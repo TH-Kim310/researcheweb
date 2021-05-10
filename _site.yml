@@ -6,3 +6,9 @@ navbar:
       href: index.html
     - text: "About"
       href: about.html
+    - text: "Introduction"
+      href: Introduction.html
+    - text: "Method & Results"
+      href: Method & Results.html
+    - text: "Discussion"
+      href: Discussion.html
