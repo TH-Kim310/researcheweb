@@ -1,4 +1,4 @@
 ---
 title: "Discussion"
 ---
-# R 명령어
+# 뭘 적어야 할까?
