@@ -1,4 +1,4 @@
 ---
 title: "Discussion"
 ---
-우리는
+# R 명령어

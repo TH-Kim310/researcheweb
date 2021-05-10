@@ -1,8 +1,9 @@
 ---
 title: "Method_and_Results"
 ---
-*Method
-우리는
+# Method
+* igem
 
 
-*Results
+# Results
+*
