@@ -1,0 +1,35 @@
+```{r}
+ids <- c("hayleykim97", 
+         "th-kim310",
+         "Lelp27",
+         "aputron",
+         "gpemelianov",
+         "yoo-bh",
+         "seokjin-oh",
+         "treebird19",
+         "jinjulee119"
+         )
+homedirs <- c(rep("researchweb", 9)) 
+
+destdir <- "download"
+
+i <- 1
+url <-  paste0("https://github.com/", ids[i], "/", homedirs[i], "/raw/main/partdb.xlsx")
+destfile <- paste0(destdir, ids[i], ".xlsx")
+download.file(url, destfile)
+
+
+for(i in 1:length(ids)){
+  url <-  paste0("https://github.com/", ids[i], "/", homedirs[i], "/raw/main/partdb.xlsx")
+  destfile <- paste0(destdir, ids[i], ".xlsx")
+  try(download.file(url, destfile))
+  cat(i, "\n");flush.console()
+}
+```
+```{r}
+dir.create("download")
+destdir <- "download/"
+url <-  "https://github.com/th-kim310/researcheweb/raw/main/partdb.xlsx"
+download.file(url, paste0(destdir, ids[2], "_partdb.xlsx"))
+```
+
