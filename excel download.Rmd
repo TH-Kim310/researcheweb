@@ -1,4 +1,6 @@
 ```{r}
+library(tidyverse)
+library(readxl)
 ids <- c("hayleykim97", 
          "th-kim310",
          "Lelp27",
@@ -9,27 +11,92 @@ ids <- c("hayleykim97",
          "treebird19",
          "jinjulee119"
          )
-homedirs <- c(rep("researchweb", 9)) 
+homedirs <- c(rep("researcheweb", length(ids))) 
 
-destdir <- "download"
+dir.create("download")
 
-i <- 1
-url <-  paste0("https://github.com/", ids[i], "/", homedirs[i], "/raw/main/partdb.xlsx")
-destfile <- paste0(destdir, ids[i], ".xlsx")
-download.file(url, destfile)
-
+destdir <- "download/"
 
 for(i in 1:length(ids)){
   url <-  paste0("https://github.com/", ids[i], "/", homedirs[i], "/raw/main/partdb.xlsx")
-  destfile <- paste0(destdir, ids[i], ".xlsx")
-  try(download.file(url, destfile))
+  destfile <- paste0(destdir, ids[i], "_partdb.xlsx")
+  tempfile <- paste0(destdir, "temp_", ids[i], "_partdb.xlsx")
+  
+  ## check the rules 
+  ## ===============================================
+  flag <- TRUE
+  try(download.file(url, tempfile, quiet = TRUE))
+  if(!file.exists(tempfile)){
+    cat(i, ids[i], " No excel file\n")
+    flush.console()
+  }else{
+    tmp <- read_excel(tempfile, sheet = 1, skip = 0, col_names = T)
+    igem_cols <- c("id", "team_name", "project", "year", "wiki")
+    if(length(names(tmp))==length(igem_cols)){
+      if(!isTRUE(all.equal(names(tmp), igem_cols))){
+        cat(i, ids[i], " check column names in the igem_team sheet\n")
+        flush.console()
+        flag <- FALSE
+      }
+    }else{
+      cat(i, ids[i], " check the number of columns in the igem_team sheet\n")
+      flush.console()
+      flag <- FALSE
+    }
+    
+    tmp <- read_excel(tempfile, sheet = 2, skip = 0, col_names = T)
+    igem_cols <- c("id", "BBid", "type", "link", "backbone", "device_id", "team_id", "user")
+    if(length(names(tmp))==length(igem_cols)){
+      if(!isTRUE(all.equal(names(tmp), igem_cols))){
+        cat(i, ids[i], " check column names in the igem_part sheet\n")
+        flush.console()
+        flag <- FALSE
+      }
+    }else{
+      cat(i, ids[i], " check the number of columns in the igem_part sheet\n")
+      flush.console()
+      flag <- FALSE
+    }
+    
+    tmp <- read_excel(tempfile, sheet = 3, skip = 0, col_names = T)
+    igem_cols <- c("id", "device_name", "part_combination")
+    if(length(names(tmp))==length(igem_cols)){
+      if(!isTRUE(all.equal(names(tmp), igem_cols))){
+        cat(i, ids[i], " check column names in the igem_device sheet\n")
+        flush.console()
+        flag <- FALSE
+      }
+    }else{
+      cat(i, ids[i], " check the number of columns in the igem_device sheet\n")
+      flush.console()
+      flag <- FALSE
+    }
+    
+    tmp <- read_excel(tempfile, sheet = 4, skip = 0, col_names = T)
+    igem_cols <- c("id", "strain", "indc", "conc", "concunit", "value", "valunit", "incubhr", "incubtemp", "device_id", "link")
+    if(length(names(tmp))==length(igem_cols)){
+      if(!isTRUE(all.equal(names(tmp), igem_cols))){
+        cat(i, ids[i], " check column names in the igem_obs sheet\n")
+        flush.console()
+        flag <- FALSE
+      }
+    }else{
+      cat(i, ids[i], " check the number of columns in the igem_obs sheet\n")
+      flush.console()
+      flag <- FALSE
+    }
+    
+    if(flag){
+      try(download.file(url, destfile, quiet = TRUE))
+    }
+    file.remove(tempfile)
+  }
+  
+  
+  ## ===============================================
+  
+  
   cat(i, "\n");flush.console()
 }
-```
-```{r}
-dir.create("download")
-destdir <- "download/"
-url <-  "https://github.com/th-kim310/researcheweb/raw/main/partdb.xlsx"
-download.file(url, paste0(destdir, ids[2], "_partdb.xlsx"))
 ```
 
