@@ -11,14 +11,13 @@ ids <- c("hayleykim97",
          "treebird19",
          "jinjulee119"
          )
-homedirs <- c(rep("researcheweb", length(ids))) 
 
 dir.create("download")
 
 destdir <- "download/"
 
 for(i in 1:length(ids)){
-  url <-  paste0("https://github.com/", ids[i], "/", homedirs[i], "/raw/main/partdb.xlsx")
+  url <-  paste0("https://github.com/", ids[i], "/", "researcheweb", "/raw/main/download/partdb.xlsx")
   destfile <- paste0(destdir, ids[i], "_partdb.xlsx")
   tempfile <- paste0(destdir, "temp_", ids[i], "_partdb.xlsx")
   
@@ -98,5 +97,68 @@ for(i in 1:length(ids)){
   
   cat(i, "\n");flush.console()
 }
+```
+
+```{r}
+filenames <- dir(path = destdir, pattern = "*_partdb.xlsx")
+
+
+tmp1 <- list()
+tmp2 <- list()
+tmp3 <- list()
+tmp4 <- list()
+
+for(i in 1:length(filenames)) {
+  destfile <- paste0(destdir, filenames[i])
+  tmp1[[i]] <- read_excel(destfile, sheet = 1, skip = 0, col_names = T)
+  tmp2[[i]] <- read_excel(destfile, sheet = 2, skip = 0, col_names = T)
+  tmp3[[i]] <- read_excel(destfile, sheet = 3, skip = 0, col_names = T)
+  tmp4[[i]] <- read_excel(destfile, sheet = 4, skip = 0, col_names = T)
+}
+
+##igem_team(id and year-> character)
+##igem_part(id and device_id and team_id -> character)
+##igem_device(id -> character)
+##igem_obs(conc -> numeric, device_id -> character)
+
+tmp1[[1]]$id <- as.character(tmp1[[1]]$id)
+tmp1[[2]]$id <- as.character(tmp1[[2]]$id)
+tmp1[[3]]$id <- as.character(tmp1[[3]]$id)
+tmp1[[1]]$year <- as.character(tmp1[[1]]$year)
+tmp1[[2]]$year <- as.character(tmp1[[2]]$year)
+tmp1[[3]]$year <- as.character(tmp1[[3]]$year)
+
+tmp2[[1]]$id <- as.character(tmp2[[1]]$id)
+tmp2[[2]]$id <- as.character(tmp2[[2]]$id)
+tmp2[[3]]$id <- as.character(tmp2[[3]]$id)
+tmp2[[1]]$device_id <- as.character(tmp2[[1]]$device_id)
+tmp2[[2]]$device_id <- as.character(tmp2[[2]]$device_id)
+tmp2[[3]]$device_id <- as.character(tmp2[[3]]$device_id)
+tmp2[[1]]$team_id <- as.character(tmp2[[1]]$team_id)
+tmp2[[2]]$team_id <- as.character(tmp2[[2]]$team_id)
+tmp2[[3]]$team_id <- as.character(tmp2[[3]]$team_id)
+
+tmp3[[1]]$id <- as.character(tmp3[[1]]$id)
+tmp3[[2]]$id <- as.character(tmp3[[2]]$id)
+tmp3[[3]]$id <- as.character(tmp3[[3]]$id)
+
+tmp4[[1]]$device_id <- as.character(tmp4[[1]]$device_id)
+tmp4[[2]]$device_id <- as.character(tmp4[[2]]$device_id)
+tmp4[[3]]$device_id <- as.character(tmp4[[3]]$device_id)
+tmp4[[1]]$id <- as.character(tmp4[[1]]$id)
+tmp4[[2]]$conc <- as.numeric(tmp4[[2]]$conc)
+tmp4[[3]]$id <- as.character(tmp4[[3]]$id)
+tmp4[[3]]$conc <- as.numeric(tmp4[[3]]$conc)
+tmp4[[3]]$incubhr <- as.numeric(tmp4[[3]]$incubhr)
+
+igem_team <- do.call(bind_rows, tmp1)
+igem_part <- do.call(bind_rows, tmp2)
+igem_device <- do.call(bind_rows, tmp3)
+igem_obs <- do.call(bind_rows, tmp4)
+
+igem_team
+igem_part
+igem_device
+igem_obs
 ```
 
