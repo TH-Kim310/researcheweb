@@ -6,7 +6,9 @@ destdir <- "download/"
 filenames <- dir(path = destdir, pattern = "*.xlsx")
 full_filenames <- paste0(destdir, "/", filenames)
 sapply(full_filenames, file.remove)
+```
 
+```{r}
 ids <- c("hayleykim97", 
          "th-kim310",
          "Lelp27",
@@ -19,7 +21,15 @@ ids <- c("hayleykim97",
          )
 destdir <- "download/"
 
-# https://github.com/TH-Kim310/researcheweb/blob/main/download/partdb.xlsx
+igem_team_cols <- c("id", "team_name", "project", "year", "wiki")
+igem_part_cols <- c("id", "BBid", "type", "link", "backbone", "device_id", "team_id", "user")
+igem_device_cols <- c("id", "device_name", "part_combination")
+igem_obs_cols <- c("id", "strain", "indc", "conc", "concunit", "value", "valunit", "incubhr", "incubtemp", "device_id", "link")
+```
+
+```{r}
+destdir <- "download/"
+
 
 for(i in 1:length(ids)){
   url <-  paste0("https://github.com/", ids[i], "/", "researcheweb", "/raw/main/", destdir, "partdb.xlsx")
@@ -37,16 +47,10 @@ for(i in 1:length(ids)){
     flush.console()
   }else{
     tmp <- read_excel(tempfile, sheet = 1, skip = 0, col_names = T)
-    igem_cols <- c("id", "team_name", "project", "year", "wiki")
+    igem_cols <- igem_team_cols
     if(length(names(tmp))==length(igem_cols)){
       if(!isTRUE(all.equal(names(tmp), igem_cols))){
         print(paste(i, ids[i], " check column names in the igem_team sheet"))
-        flush.console()
-        flag <- FALSE
-      }
-      ## check id type
-      if(class(tmp$id)!="character"){
-        print(paste(i, ids[i], " check id type as character in the igem_team sheet"))
         flush.console()
         flag <- FALSE
       }
@@ -57,16 +61,10 @@ for(i in 1:length(ids)){
     }
     
     tmp <- read_excel(tempfile, sheet = 2, skip = 0, col_names = T)
-    igem_cols <- c("id", "BBid", "type", "link", "backbone", "device_id", "team_id", "user")
+    igem_cols <- igem_part_cols
     if(length(names(tmp))==length(igem_cols)){
       if(!isTRUE(all.equal(names(tmp), igem_cols))){
         print(paste(i, ids[i], " check column names in the igem_part sheet"))
-        flush.console()
-        flag <- FALSE
-      }
-      ## check id type
-      if(class(tmp$id)!="character"){
-        print(paste(i, ids[i], " check id type as character in the igem_part sheet"))
         flush.console()
         flag <- FALSE
       }
@@ -77,16 +75,10 @@ for(i in 1:length(ids)){
     }
     
     tmp <- read_excel(tempfile, sheet = 3, skip = 0, col_names = T)
-    igem_cols <- c("id", "device_name", "part_combination")
+    igem_cols <- igem_device_cols
     if(length(names(tmp))==length(igem_cols)){
       if(!isTRUE(all.equal(names(tmp), igem_cols))){
         print(paste(i, ids[i], " check column names in the igem_device sheet"))
-        flush.console()
-        flag <- FALSE
-      }
-      ## check id type
-      if(class(tmp$id)!="character"){
-        print(paste(i, ids[i], " check id type as character in the igem_device sheet"))
         flush.console()
         flag <- FALSE
       }
@@ -97,16 +89,10 @@ for(i in 1:length(ids)){
     }
     
     tmp <- read_excel(tempfile, sheet = 4, skip = 0, col_names = T)
-    igem_cols <- c("id", "strain", "indc", "conc", "concunit", "value", "valunit", "incubhr", "incubtemp", "device_id", "link")
+    igem_cols <- igem_obs_cols
     if(length(names(tmp))==length(igem_cols)){
       if(!isTRUE(all.equal(names(tmp), igem_cols))){
         cat(i, ids[i], " check column names in the igem_obs sheet\n")
-        flush.console()
-        flag <- FALSE
-      }
-      ## check id type
-      if(class(tmp$id)!="character"){
-        print(paste(i, ids[i], " check id type as character in the igem_obs sheet"))
         flush.console()
         flag <- FALSE
       }
@@ -132,6 +118,9 @@ for(i in 1:length(ids)){
 ```
 
 ```{r}
+library(magrittr)
+
+## 다운로드 받은 엑셀 파일들 
 filenames <- dir(path = destdir, pattern = "*_partdb.xlsx")
 
 
@@ -142,42 +131,105 @@ tmp4 <- list()
 
 for(i in 1:length(filenames)) {
   destfile <- paste0(destdir, filenames[i])
-  tmp1[[i]] <- read_excel(destfile, sheet = 1, skip = 0, col_names = T)
-  tmp2[[i]] <- read_excel(destfile, sheet = 2, skip = 0, col_names = T)
-  tmp3[[i]] <- read_excel(destfile, sheet = 3, skip = 0, col_names = T)
-  tmp4[[i]] <- read_excel(destfile, sheet = 4, skip = 0, col_names = T)
+  
+  tmp <- read_excel(destfile, sheet = 1, skip = 0, col_names = T)
+  tmp %<>% mutate(across(!where(is.character), as.character)) 
+  ## add filename
+  tmp1[[i]] <- tmp %>% mutate(filename=filenames[i])
+  
+  tmp <- read_excel(destfile, sheet = 2, skip = 0, col_names = T)
+  tmp %<>% mutate(across(!where(is.character), as.character)) 
+  tmp2[[i]] <- tmp %>% mutate(filename=filenames[i])
+  
+  tmp <- read_excel(destfile, sheet = 3, skip = 0, col_names = T)
+  tmp %<>% mutate(across(!where(is.character), as.character)) 
+  tmp3[[i]] <- tmp %>% mutate(filename=filenames[i])
+  
+  tmp <- read_excel(destfile, sheet = 4, skip = 0, col_names = T) 
+  tmp %<>% mutate(across(!where(is.character), as.character)) 
+  tmp4[[i]] <- tmp %>% mutate(filename=filenames[i])
+  
 }
-
-tmp1[[2]]$year <- as.character(tmp1[[2]]$year)
-tmp1[[3]]$year <- as.character(tmp1[[3]]$year)
-tmp1[[4]]$year <- as.character(tmp1[[4]]$year)
-tmp1[[5]]$year <- as.character(tmp1[[5]]$year)
-
-tmp2[[2]]$device_id <- as.character(tmp2[[2]]$device_id)
-tmp2[[2]]$team_id <- as.character(tmp2[[2]]$team_id)
-tmp2[[4]]$device_id <- as.character(tmp2[[4]]$device_id)
-tmp2[[4]]$team_id <- as.character(tmp2[[4]]$team_id)
-tmp2[[5]]$device_id <- as.character(tmp2[[5]]$device_id)
-tmp2[[5]]$team_id <- as.character(tmp2[[5]]$team_id)
-
-tmp3[[3]]$part_combination <- as.character(tmp3[[3]]$part_combination)
-
-tmp4[[2]]$device_id <- as.character(tmp4[[2]]$device_id)
-tmp4[[3]]$device_id <- as.character(tmp4[[3]]$device_id)
-tmp4[[3]]$incubtemp <- as.character(tmp4[[3]]$incubtemp)
-tmp4[[4]]$device_id <- as.character(tmp4[[4]]$device_id)
-tmp4[[4]]$incubtemp <- as.character(tmp4[[4]]$incubtemp)
-tmp4[[5]]$conc <- as.numeric(tmp4[[5]]$conc)
-tmp4[[5]]$device_id <- as.character(tmp4[[5]]$device_id)
 
 igem_team <- do.call(bind_rows, tmp1)
 igem_part <- do.call(bind_rows, tmp2)
 igem_device <- do.call(bind_rows, tmp3)
 igem_obs <- do.call(bind_rows, tmp4)
+```
 
-igem_team
-igem_part
-igem_device
-igem_obs
+```{r}
+library(tidyverse)
+
+## new id 
+tmpdat <- igem_part %>% 
+  left_join(igem_team, by=c("team_id"="id", "filename"="filename"))
+
+tmpdat %>% str
+```
+```{r}
+tmpdat <- igem_part %>% 
+  full_join(igem_team, by=c("team_id"="id", "filename"="filename")) %>% 
+  select(id, BBid, type, backbone, device_id, user, filename, team_name, year) %>% 
+  drop_na()
+
+tmpdat %>% str
+```
+```{r}
+tmpdat2 <- igem_obs %>% 
+  full_join(igem_device, by=c("device_id"="id", "filename"="filename")) %>% 
+  drop_na()
+
+
+tmpdat2 %>%  str
+```
+```{r}
+tmpdat %>% 
+  filter(BBid=="BBa_R0011")
+```
+
+```{r}
+finaldat <-tmpdat2 %>% 
+  mutate(partcomb = lapply(strsplit(tmpdat2$part_combination, split=","), as.numeric)) %>% 
+  filter(unlist(lapply(partcomb, function(x){1 %in% x})) & filename=="aputron_partdb.xlsx")
+
+finaldat %>% str
+```
+```{r}
+tmpdat %>% 
+  filter(BBid=="BBa_I0500")
+```
+
+```{r}
+tmpd <-tmpdat2 %>% 
+  mutate(partcomb = lapply(strsplit(tmpdat2$part_combination, split=","), as.numeric)) %>% 
+  filter(unlist(lapply(partcomb, function(x){1 %in% x})) & filename=="gpemelianov_partdb.xlsx")
+
+finaldat <- tmpd
+finaldat %>% str
+```
+```{r}
+tmpd <-tmpdat2 %>% 
+  mutate(partcomb = lapply(strsplit(tmpdat2$part_combination, split=","), as.numeric)) %>% 
+  filter(unlist(lapply(partcomb, function(x){5 %in% x})) & filename=="gpemelianov_partdb.xlsx")
+
+finaldat <- bind_rows(finaldat, tmpd)
+finaldat %>% str
+```
+```{r}
+plotdat <- finaldat %>% 
+  select(-c(id, link, filename, part_combination, partcomb)) %>% 
+  mutate(value = as.numeric(value))
+
+plotdat %>% str
+```
+```{r}
+datasummary <- plotdat %>% 
+  group_by(indc, conc) %>% 
+  summarise(mean=mean(value), n=n()) 
+
+ggplot(datasummary, aes(x=conc, y=mean)) +
+  geom_bar(stat="identity") +
+  theme_bw()
+
 ```
 
