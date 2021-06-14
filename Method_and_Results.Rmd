@@ -1,5 +1,18 @@
 ---
 title: "Method_and_Results"
+subtitle: "2021년 1학기 UST 현장연구 E (월, 목 10시~12시)"
+Name: "김태현"
+output:
+  pdf_document:
+    latex_engine: xelatex
+  html_document:
+    theme: readable
+    highlight: tango
+    toc: true
+    toc_depth: 1
+    toc_float: true
+    df_print: paged
+mainfont : NanumGothic
 ---
 # Method
 * [강의노트](https://greendaygh.github.io/researchE2021/ResearchE-lecturenote.html)

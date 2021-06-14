@@ -1,5 +1,18 @@
 ---
 title: "Introduction"
+subtitle: "2021년 1학기 UST 현장연구 E (월, 목 10시~12시)"
+Name: "김태현"
+output:
+  pdf_document:
+    latex_engine: xelatex
+  html_document:
+    theme: readable
+    highlight: tango
+    toc: true
+    toc_depth: 1
+    toc_float: true
+    df_print: paged
+mainfont : NanumGothic
 ---
 # R markdown이란? 
 * 데이터 분석의 전 과정을 담은 보고서를 쉽게 만들 수 있는 패키지로 html, word, pdf등 다양한
