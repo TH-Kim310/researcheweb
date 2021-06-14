@@ -15,10 +15,14 @@ output:
 mainfont : NanumGothic
 ---
 # Method
+* 매주 Remote meeting과 아래 강의노트를 활용해 R 조작법에 대한 수업을 진행했다.
 * [강의노트](https://greendaygh.github.io/researchE2021/ResearchE-lecturenote.html)
+* (3/4)- 합성생물학의 개념 정립
+* (3/8)- igem.org에서 각 5~10개의 team을 선정해 자유롭게 요약
+* (3/15)- 
 
 # Results
-* [파일](210311 현장연구_김태현_210311_160543.pdf)
+* (3/8)- [파일](210311 현장연구_김태현_210311_160543.pdf)
 * [파일](0315_김태현.pdf)
 * [파일](Test_user03.pdf)
 * [링크](https://th-kim310.github.io/ResearchE/)
