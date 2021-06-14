@@ -3,8 +3,6 @@ title: "Discussion"
 subtitle: "2021년 1학기 UST 현장연구 E (월, 목 10시~12시)"
 Name: "김태현"
 output:
-  pdf_document:
-    latex_engine: xelatex
   html_document:
     theme: readable
     highlight: tango
@@ -12,6 +10,10 @@ output:
     toc_depth: 1
     toc_float: true
     df_print: paged
+  pdf_document:
+    latex_engine: xelatex
 mainfont : NanumGothic
 ---
-## 뭘 적어야 할까?
+## R 명령어
+
+## R markdown

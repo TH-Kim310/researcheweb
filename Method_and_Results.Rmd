@@ -3,8 +3,6 @@ title: "Method_and_Results"
 subtitle: "2021년 1학기 UST 현장연구 E (월, 목 10시~12시)"
 Name: "김태현"
 output:
-  pdf_document:
-    latex_engine: xelatex
   html_document:
     theme: readable
     highlight: tango
@@ -12,22 +10,53 @@ output:
     toc_depth: 1
     toc_float: true
     df_print: paged
+  pdf_document:
+    latex_engine: xelatex
 mainfont : NanumGothic
 ---
-# Method
+## Method
 * 매주 Remote meeting과 아래 강의노트를 활용해 R 조작법에 대한 수업을 진행했다.
 * [강의노트](https://greendaygh.github.io/researchE2021/ResearchE-lecturenote.html)
 * (3/4)- 합성생물학의 개념 정립
 * (3/8)- igem.org에서 각 5~10개의 team을 선정해 자유롭게 요약
-* (3/15)- 
+* (3/15)- 본인이 선정한 team의 DNA 부품, 회로 정리, R markdown 연습(data frame)
+* (3/18)- R markdown을 통한 리포트 작성 및 제출
+* (3/22)- Github page 만들기
+* (3/29)- 본인이 조사했던 part정보를 테이블로 만들어 웹에 올리기
+* (4/1)- 각자 할당된 프로모터에 대해 팀 사례 분석
+* (4/7)- 분석데이터를 3개의 테이블로 정리
+* (4/12)- 분석데이터 재정리
+* (4/15)- 각자 재할당된 프로모터에 대해 팀 사례 분석, excel loading
+* (4/19)- 다른 사람의 excel 파일 다운로드 및 병합
+* (4/22)- for 문을 이용한 파일 다운로드 및 병합
+* (4/29)- 웹페이지 만들기
+* (5/3)- 웹페이지 만들기
+* (5/10)- 웹페이지 만들기
+* (5/13)- 새로운 테이블을 추가하여 데이터 정리
+* (5/17)- 개인지도
+* (5/20)- excel 파일 정리
+* (5/24)- excel 파일 완성
+* (5/27)- excel 파일 수집 코드 작성
+* (5/31)- 데이터 전처리 및 그래프 작성
+* (6/7)- 데이터 분석을 위한 전처리
+* (6/14)- 데이터 분석에 사용한 코드 설명
 
-# Results
+## Results
 * (3/8)- [파일](210311 현장연구_김태현_210311_160543.pdf)
-* [파일](0315_김태현.pdf)
-* [파일](Test_user03.pdf)
-* [링크](https://th-kim310.github.io/ResearchE/)
-* [링크](https://th-kim310.github.io/igemE/)
-* [링크](https://th-kim310.github.io/researcheweb/)
+* (3/15)- rep, c, data.frame 명령어 익힘, [파일](0315_김태현.pdf)
+* (3/18)- class 명령어 익힘, [파일](Test_user03.pdf)
+* (03/22)- GitHub repository 제작, R project 제작, Connect, Commit, Remote 저장소와 연결, Push, [링크](https://th-kim310.github.io/ResearchE/)
+* (4/7)- paste0, length, colnames, ggplot 명령어 익힘, [링크](https://th-kim310.github.io/igemE/)
+* (4/12)- bind_rows 명령어 익힘, [링크](https://th-kim310.github.io/igemE/)
+* (4/15)- readxl library, read_excel 명령어 익힘, [링크](https://th-kim310.github.io/igemE/)
+* (4/19)- download.file, dir.create, for 명령어 익힘, [링크](https://th-kim310.github.io/igemE/)
+* (4/22)- try, cat, do.call, as.numeric, as.character 명령어 익힘, [링크](https://th-kim310.github.io/igemE/)
+* (5/3)- _site.yml파일 만들기, [링크](https://th-kim310.github.io/researcheweb/)
+* (5/13)- lapply 명령어 익힘
+* (5/27)- if, else, flush.console, flag, file.remove 명령어 익힘
+* (5/31)- print, sapply 명령어 익힘
+* (6/7)- left_join, full_join, select, drop_na, filter, mutate, group_by, summarise 명령어 익힘
+
 
 
 
