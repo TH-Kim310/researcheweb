@@ -1,17 +1,25 @@
 ---
 title: "Method_and_Results"
 subtitle: "2021년 1학기 UST 현장연구 E (월, 목 10시~12시)"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 Name: "김태현"
 output:
+  word_document:
+    toc: yes
   html_document:
+    number_sections: yes
     theme: readable
     highlight: tango
     toc: true
     toc_depth: 1
     toc_float: true
     df_print: paged
+  output: rtf_document
   pdf_document:
+    toc: yes
     latex_engine: xelatex
+    number_sections: yes
+Header-includes: \usepackage[hangul]{kotex}
 mainfont : NanumGothic
 ---
 ## Method
@@ -48,12 +56,12 @@ mainfont : NanumGothic
 * (03/22)- GitHub repository 제작, R project 제작, Connect, Commit, Remote 저장소와 연결, Push, [링크](https://th-kim310.github.io/ResearchE/)
 * (4/7)- paste0, length, colnames, ggplot 명령어 익힘, [링크](https://th-kim310.github.io/igemE/)
 * (4/12)- bind_rows 명령어 익힘, [링크](https://th-kim310.github.io/igemE/)
-* (4/15)- readxl library, read_excel 명령어 익힘, [링크](https://th-kim310.github.io/igemE/)
+* (4/15)- library, read_excel 명령어 익힘, [링크](https://th-kim310.github.io/igemE/)
 * (4/19)- download.file, dir.create, for 명령어 익힘, [링크](https://th-kim310.github.io/igemE/)
 * (4/22)- try, cat, do.call, as.numeric, as.character 명령어 익힘, [링크](https://th-kim310.github.io/igemE/)
 * (5/3)- _site.yml파일 만들기, [링크](https://th-kim310.github.io/researcheweb/)
 * (5/13)- lapply 명령어 익힘
-* (5/27)- if, else, flush.console, flag, file.remove 명령어 익힘
+* (5/27)- if, flag, file.remove 명령어 익힘
 * (5/31)- print, sapply 명령어 익힘
 * (6/7)- left_join, full_join, select, drop_na, filter, mutate, group_by, summarise 명령어 익힘
 
