@@ -16,7 +16,7 @@
 <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -29,9 +29,12 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -42,16 +45,6 @@
   ul.task-list{list-style: none;}
     </style>
 
-<style type="text/css">code{white-space: pre;}</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
 
 
 
@@ -218,6 +211,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -225,6 +281,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -269,32 +335,41 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Introduction</h1>
+<h3 class="subtitle">2021년 1학기 UST 현장연구 E (월, 목 10시~12시)</h3>
 
 </div>
 
 
-<div id="r-markdown이란" class="section level1">
-<h1>R markdown이란?</h1>
+<div id="r-markdown이란" class="section level2">
+<h2>R markdown이란?</h2>
 <ul>
 <li>데이터 분석의 전 과정을 담은 보고서를 쉽게 만들 수 있는 패키지로 html, word, pdf등 다양한 포맷으로 저장가능하기 때문에 별도의 문서 작성 소프트웨어를 사용하지 않고도 데이터 분석 보고서를 만들어 낼 수 있다.</li>
 </ul>
 </div>
-<div id="합성생물학" class="section level1">
-<h1>합성생물학</h1>
+<div id="합성생물학" class="section level2">
+<h2>합성생물학</h2>
 <ul>
 <li>생물학에서의 실험결과는 물리, 화학분야와 다르게 낮은 재현성을 가져 생물학 연구의 발전이 저해되고 있다. 이런 상황에서 합성생물학은 생물학에 공학의 개념을 더해 복잡한 생명현상의 원리를 직접 디자인하여 만들어나가며 이해하려는 시도이다.</li>
 </ul>
 </div>
-<div id="수업목적" class="section level1">
-<h1>수업목적</h1>
+<div id="수업목적" class="section level2">
+<h2>수업목적</h2>
 <ul>
 <li>R markdown을 통한 데이터 분석 보고서 작성의 간편화 및 공유의 용이함은 생물학분야의 고질적인 문제인 낮은 재현성으로 인한 문제에 기여할 수 있다.</li>
 <li><a href="https://www.youtube.com/watch?v=s9aWmU0atlQ">참고영상</a></li>
 </ul>
 </div>
+<div id="수업방법" class="section level2">
+<h2>수업방법</h2>
+<ul>
+<li>각 학생들이 정해진 part 한 가지에 대한 사례분석을 실시하고, 동일한 플랫폼을 사용해 정리하고 추후에 병합하여 비교 분석함으로써, 최종적으로 실험의 재현성여부를 확인하는 방향으로 진행되었다.</li>
+</ul>
+</div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -327,6 +402,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

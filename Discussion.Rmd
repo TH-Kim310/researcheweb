@@ -4,6 +4,13 @@ subtitle: "2021년 1학기 UST 현장연구 E (월, 목 10시~12시)"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 Name: "김태현"
 output:
+  pdf_document:
+    toc: yes
+    latex_engine: xelatex
+    number_sections: yes
+  word_document:
+    toc: yes
+  output: rtf_document
   html_document:
     number_sections: yes
     theme: readable
@@ -12,16 +19,10 @@ output:
     toc_depth: 1
     toc_float: true
     df_print: paged
-  word_document:
-    toc: yes
-  output: rtf_document
-  pdf_document:
-    toc: yes
-    latex_engine: xelatex
-    number_sections: yes
 Header-includes: \usepackage[hangul]{kotex}
 mainfont : NanumGothic
 ---
+
 ## R 명령어
 이번 수업에서는 R을 기반으로 진행하였기 때문에 많은 명령어를 사용하여 원하는 기능을
 수행하도록 해보았다. 하지만 처음사용하다보니 대부분의 명령어가 익숙하지 못해 사실상
@@ -67,7 +68,9 @@ mainfont : NanumGothic
 R markdown과 github를 사용해 수업 목표였던 생물학의 고질적인 문제인 낮은 재현성을
 해결하기 위하여 여러명이 몇 가지의 Promoter part에 대한 iGem 내에서의 여러 실험들을
 주어진 포맷으로 정리를 했다. 그 결과 아래와 같은 그래프를 만들 수 있었다.
-![최종 그래프](최종그래프.png)
+```{r figure1, echo=FALSE, fig.align='center', out.width = '50%'}
+knitr::include_graphics("최종그래프.png")
+```
 
 하지만 위 그래프는 같은 프로모터에 대해 같은 inducer가 같은 농도로 처리된 data를 여러 사람이 수집한 것이 아니기 때문에 애당초의 수업목표를 모두 이루었다고 볼 수는 없다. 그래도 1학기 동안의 수업을 통해서 R markdown을 사용하는 것에 대한 의의와 목적성을 알 수 가 있었다.
 

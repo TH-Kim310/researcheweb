@@ -4,6 +4,13 @@ subtitle: "2021년 1학기 UST 현장연구 E (월, 목 10시~12시)"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 Name: "김태현"
 output:
+  pdf_document:
+    toc: yes
+    latex_engine: xelatex
+    number_sections: yes
+  word_document:
+    toc: yes
+  output: rtf_document
   html_document:
     number_sections: yes
     theme: readable
@@ -12,13 +19,6 @@ output:
     toc_depth: 1
     toc_float: true
     df_print: paged
-  word_document:
-    toc: yes
-  output: rtf_document
-  pdf_document:
-    toc: yes
-    latex_engine: xelatex
-    number_sections: yes
 Header-includes: \usepackage[hangul]{kotex}
 mainfont : NanumGothic
 ---
