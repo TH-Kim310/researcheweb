@@ -16,7 +16,7 @@
 <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -29,9 +29,12 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -42,16 +45,6 @@
   ul.task-list{list-style: none;}
     </style>
 
-<style type="text/css">code{white-space: pre;}</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
 
 
 
@@ -218,6 +211,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -225,6 +281,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -269,30 +335,65 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Method_and_Results</h1>
+<h3 class="subtitle">2021년 1학기 UST 현장연구 E (월, 목 10시~12시)</h3>
 
 </div>
 
 
-<div id="method" class="section level1">
-<h1>Method</h1>
+<div id="method" class="section level2">
+<h2>Method</h2>
 <ul>
+<li>매주 Remote meeting과 아래 강의노트를 활용해 R 조작법에 대한 수업을 진행했다.</li>
 <li><a href="https://greendaygh.github.io/researchE2021/ResearchE-lecturenote.html">강의노트</a></li>
+<li>(3/4)- 합성생물학의 개념 정립</li>
+<li>(3/8)- igem.org에서 각 5~10개의 team을 선정해 자유롭게 요약</li>
+<li>(3/15)- 본인이 선정한 team의 DNA 부품, 회로 정리, R markdown 연습(data frame)</li>
+<li>(3/18)- R markdown을 통한 리포트 작성 및 제출</li>
+<li>(3/22)- Github page 만들기</li>
+<li>(3/29)- 본인이 조사했던 part정보를 테이블로 만들어 웹에 올리기</li>
+<li>(4/1)- 각자 할당된 프로모터에 대해 팀 사례 분석</li>
+<li>(4/7)- 분석데이터를 3개의 테이블로 정리</li>
+<li>(4/12)- 분석데이터 재정리</li>
+<li>(4/15)- 각자 재할당된 프로모터에 대해 팀 사례 분석, excel loading</li>
+<li>(4/19)- 다른 사람의 excel 파일 다운로드 및 병합</li>
+<li>(4/22)- for 문을 이용한 파일 다운로드 및 병합</li>
+<li>(4/29)- 웹페이지 만들기</li>
+<li>(5/3)- 웹페이지 만들기</li>
+<li>(5/10)- 웹페이지 만들기</li>
+<li>(5/13)- 새로운 테이블을 추가하여 데이터 정리</li>
+<li>(5/17)- 개인지도</li>
+<li>(5/20)- excel 파일 정리</li>
+<li>(5/24)- excel 파일 완성</li>
+<li>(5/27)- excel 파일 수집 코드 작성</li>
+<li>(5/31)- 데이터 전처리 및 그래프 작성</li>
+<li>(6/7)- 데이터 분석을 위한 전처리</li>
+<li>(6/14)- 데이터 분석에 사용한 코드 설명</li>
 </ul>
 </div>
-<div id="results" class="section level1">
-<h1>Results</h1>
+<div id="results" class="section level2">
+<h2>Results</h2>
 <ul>
-<li><a href="210311%20현장연구_김태현_210311_160543.pdf">파일</a></li>
-<li><a href="0315_김태현.pdf">파일</a></li>
-<li><a href="Test_user03.pdf">파일</a></li>
-<li><a href="https://th-kim310.github.io/ResearchE/">링크</a></li>
-<li><a href="https://th-kim310.github.io/igemE/">링크</a></li>
-<li><a href="https://th-kim310.github.io/researcheweb/">링크</a></li>
+<li>(3/8)- <a href="210311%20현장연구_김태현_210311_160543.pdf">파일</a></li>
+<li>(3/15)- rep, c, data.frame 명령어 익힘, <a href="0315_김태현.pdf">파일</a></li>
+<li>(3/18)- class 명령어 익힘, <a href="Test_user03.pdf">파일</a></li>
+<li>(03/22)- GitHub repository 제작, R project 제작, Connect, Commit, Remote 저장소와 연결, Push, <a href="https://th-kim310.github.io/ResearchE/">링크</a></li>
+<li>(4/7)- paste0, length, colnames, ggplot 명령어 익힘, <a href="https://th-kim310.github.io/igemE/">링크</a></li>
+<li>(4/12)- bind_rows 명령어 익힘, <a href="https://th-kim310.github.io/igemE/">링크</a></li>
+<li>(4/15)- readxl library, read_excel 명령어 익힘, <a href="https://th-kim310.github.io/igemE/">링크</a></li>
+<li>(4/19)- download.file, dir.create, for 명령어 익힘, <a href="https://th-kim310.github.io/igemE/">링크</a></li>
+<li>(4/22)- try, cat, do.call, as.numeric, as.character 명령어 익힘, <a href="https://th-kim310.github.io/igemE/">링크</a></li>
+<li>(5/3)- _site.yml파일 만들기, <a href="https://th-kim310.github.io/researcheweb/">링크</a></li>
+<li>(5/13)- lapply 명령어 익힘</li>
+<li>(5/27)- if, else, flush.console, flag, file.remove 명령어 익힘</li>
+<li>(5/31)- print, sapply 명령어 익힘</li>
+<li>(6/7)- left_join, full_join, select, drop_na, filter, mutate, group_by, summarise 명령어 익힘</li>
 </ul>
 </div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -325,6 +426,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
